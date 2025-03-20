@@ -4,59 +4,72 @@ const app = express();
 // Examples: Matches routes like /greetings/Christy or /greetings/Mathilda.
 // Response: Include the username from the URL in the response, such as “Hello there, Christy!” or “What a delight it is to see you once more, Mathilda.”
 
-// app.get("/greetings/:username-parameter",(req, res) =>{
-//     const {username} = req.params;
-//     const message = `Glad you are here ${username}!`
-//     res.send(message);
-// });
+app.get("/greetings/:username-parameter", (req, res) => {
+  const { username } = req.params;
+  const message = `Glad you are here ${username}!`;
+  res.send(message);
+});
 
-// app.listen(3000, () => {
-// console.log("Express app is running on port 3000...");
-// });
+app.listen(3000, () => {
+  console.log("Express app is running on port 3000...");
+});
 
-// app.get("/roll/:number",(req, res) =>{
-// const {number} = req.params;
+// Task: Set up a route to handle URLs following the pattern /roll/<number-parameter>.
+// Examples: Matches routes like /roll/6 or /roll/20.
+// Validation: If the parameter is not a number, respond with “You must specify a number.” For instance, /roll/potato should trigger this response.
 
-// if(isNaN(number) || parseInt(number) < 1) {
-//     return res.send("You must specify a number.");
-// }
+app.get("/roll/:number", (req, res) => {
+  const { number } = req.params;
 
-// const maxNumber = parseInt(number);
+  if (isNaN(number) || parseInt(number) < 1) {
+    return res.send("You must specify a number.");
+  }
 
-// const rolledNumber = Math.floor(Math.random() * (maxNumber +1));
+  const maxNumber = parseInt(number);
 
-// res.send(`You rolled a ${rolledNumber}.`);
-// });
+  const rolledNumber = Math.floor(Math.random() * (maxNumber + 1));
 
-// app.listen(3000, () => {
-//     console.log("Express app is running on port 3000...");
-//     });
+  res.send(`You rolled a ${rolledNumber}.`);
+});
+
+app.listen(3000, () => {
+  console.log("Express app is running on port 3000...");
+});
 
 // Task: Set up a route to handle URLs following the pattern /roll/<number-parameter>.
 // Examples: Matches routes like /roll/6 or /roll/20.
 // Validation: If the parameter is not a number, respond with “You must specify a number.” For instance, /roll/potato should trigger this response.
 // Functionality: If a valid number is provided, respond with a random whole number between 0 and the given number. For example, a request to /roll/16 might respond with “You rolled a 14.”
 
-// const collectibles = [
-//     { name: 'shiny ball', price: 5.95 },
-//     { name: 'autographed picture of a dog', price: 10 },
-//     { name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99 }
-//   ];
+const collectibles = [
+  { name: "shiny ball", price: 5.95 },
+  { name: "autographed picture of a dog", price: 10 },
+  { name: "vintage 1970s yogurt SOLD AS-IS", price: 0.99 },
+];
 
-//   app.get("/collectibles/:index", (req, res) =>{
-//     const {index} = req.params;
-//     const itemIndex = parseInt(index);
+app.get("/collectibles/:index", (req, res) => {
+  const { index } = req.params;
+  const itemIndex = parseInt(index);
 
-//     if (isNaN(itemIndex) || itemIndex < 0 || itemIndex >= collectibles.length) {
-//         return res.send("This item is not yet in stock. Check back soon!");
-//     }
-//     const item = collectibles[itemIndex];
-//     res.send(`So, you want the ${item.name}? For $${item.price}, it can be yours!`);
-//   });
+  if (isNaN(itemIndex) || itemIndex < 0 || itemIndex >= collectibles.length) {
+    return res.send("This item is not yet in stock. Check back soon!");
+  }
+  const item = collectibles[itemIndex];
+  res.send(
+    `So, you want the ${item.name}? For $${item.price}, it can be yours!`
+  );
+});
 
-//   app.listen(3000, () => {
-//     console.log("Express app is running on port 3000...");
-//   });
+app.listen(3000, () => {
+  console.log("Express app is running on port 3000...");
+});
+
+// Task: Create a route /shoes that filters the list of shoes based on query parameters.
+// Query Parameters:
+// min-price: Excludes shoes below this price.
+// max-price: Excludes shoes above this price.
+// type: Shows only shoes of the specified type.
+// No parameters: Responds with the full list of shoes.
 
 const shoes = [
   { name: "Birkenstocks", price: 50, type: "sandal" },

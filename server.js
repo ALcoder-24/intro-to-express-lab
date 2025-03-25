@@ -10,9 +10,6 @@ app.get("/greetings/:username-parameter", (req, res) => {
   res.send(message);
 });
 
-app.listen(3000, () => {
-  console.log("Express app is running on port 3000...");
-});
 
 // Task: Set up a route to handle URLs following the pattern /roll/<number-parameter>.
 // Examples: Matches routes like /roll/6 or /roll/20.
@@ -32,9 +29,6 @@ app.get("/roll/:number", (req, res) => {
   res.send(`You rolled a ${rolledNumber}.`);
 });
 
-app.listen(3000, () => {
-  console.log("Express app is running on port 3000...");
-});
 
 // Task: Set up a route to handle URLs following the pattern /roll/<number-parameter>.
 // Examples: Matches routes like /roll/6 or /roll/20.
@@ -60,9 +54,6 @@ app.get("/collectibles/:index", (req, res) => {
   );
 });
 
-app.listen(3000, () => {
-  console.log("Express app is running on port 3000...");
-});
 
 // Task: Create a route /shoes that filters the list of shoes based on query parameters.
 // Query Parameters:
